@@ -12,6 +12,17 @@ const getAllProducts = (req, res) => {
     })
 };
 
+// Get one product
+const getOneProduct = (req, res) => {
+    console.log(req.params);
+    Product.findById(req.params.id)
+    .then((product) => {
+        res.json(product)
+    })
+    .catch((err) => {
+        console.log('you gotta error', err)
+    })
+};
 
 // Create Product
 const createProduct = (req, res) => {
@@ -39,4 +50,5 @@ module.exports = {
     getAllProducts,
     createProduct,
     deleteProduct,
+    getOneProduct
 }
