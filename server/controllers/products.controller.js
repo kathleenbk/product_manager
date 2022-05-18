@@ -36,6 +36,20 @@ const createProduct = (req, res) => {
     })
 };
 
+// Update Product
+const updateProduct = (req, res) => {
+    const {params} = req;
+    Product.findOneAndUpdate({_id: params._id}, req.body, {
+        new: true,
+        runValidators: true,
+    })
+    .then((updatedProduct) => {
+        res.json(updatedProduct)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+};
 // Delete Product
 const deleteProduct = (req, res) => {
     const {params} = req;
@@ -50,5 +64,6 @@ module.exports = {
     getAllProducts,
     createProduct,
     deleteProduct,
-    getOneProduct
+    getOneProduct,
+    updateProduct
 }
